@@ -1,59 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Galway Rafting Admin</title>
-  <link rel="manifest" href="manifest.json" />
-  <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input, button, textarea { display: block; margin: 10px 0; width: 100%; max-width: 400px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Galway Rafting Admin</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background:#f0f4f8; }
+  h1 { text-align: center; margin-bottom: 30px; color: #0077cc; }
+  .button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #0077cc;
+    border-radius: 8px;
+  }
+  .button:hover { background-color: #005fa3; }
+</style>
 </head>
 <body>
-  <h1>Galway Rafting - Bookings</h1>
+<h1>Galway Rafting Admin</h1>
 
-  <form id="booking-form">
-    <input type="text" id="name" placeholder="Guest Name" required />
-    <input type="date" id="date" required />
-    <input type="number" id="guests" placeholder="Number of Guests" required />
-    <button type="submit">Add Booking</button>
-  </form>
+<a href="https://calendar.google.com/calendar/u/0/r" target="_blank" class="button">View Bookings (Google Calendar)</a>
 
-  <h2>Upcoming Bookings</h2>
-  <ul id="bookings-list"></ul>
+<a href="https://forms.gle/GgSrNoTNh3d6mRzv6" target="_blank" class="button">Youth Group T&amp;C's</a>
 
-  <script>
-    const form = document.getElementById('booking-form');
-    const list = document.getElementById('bookings-list');
-    let bookings = [];
+<a href="https://forms.gle/7ogg2aUEBvhpZ97f6" target="_blank" class="button">Adult T&amp;C's</a>
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const date = document.getElementById('date').value;
-      const guests = document.getElementById('guests').value;
-      const booking = { name, date, guests, arrived: false };
-      bookings.push(booking);
-      updateList();
-      form.reset();
-    });
+<a href="https://forms.gle/HPdvZiHMuBfr5TrR6" target="_blank" class="button">Accident Report Form</a>
 
-    function updateList() {
-      list.innerHTML = '';
-      bookings.forEach((b, i) => {
-        const item = document.createElement('li');
-        item.innerHTML = `${b.name} - ${b.date} - ${b.guests} guests
-          <button onclick="toggleArrived(${i})">
-            ${b.arrived ? '✅ Signed In' : 'Sign In'}
-          </button>`;
-        list.appendChild(item);
-      });
-    }
+<a href="training.html" class="button">Training Manual</a>
 
-    function toggleArrived(index) {
-      bookings[index].arrived = !bookings[index].arrived;
-      updateList();
-    }
-  </script>
+<a href="rota.html" class="button">Staff Rota</a>
+
 </body>
 </html>
