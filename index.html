@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Galway Rafting Admin</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, button, textarea { display: block; margin: 10px 0; width: 100%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <h1>Galway Rafting - Bookings</h1>
+
+  <form id="booking-form">
+    <input type="text" id="name" placeholder="Guest Name" required />
+    <input type="date" id="date" required />
+    <input type="number" id="guests" placeholder="Number of Guests" required />
+    <button type="submit">Add Booking</button>
+  </form>
+
+  <h2>Upcoming Bookings</h2>
+  <ul id="bookings-list"></ul>
+
+  <script>
+    const form = document.getElementById('booking-form');
+    const list = document.getElementById('bookings-list');
+    let bookings = [];
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const guests = document.getElementById('guests').value;
+      const booking = { name, date, guests, arrived: false };
+      bookings.push(booking);
+      updateList();
+      form.reset();
+    });
+
+    function updateList() {
+      list.innerHTML = '';
+      bookings.forEach((b, i) => {
+        const item = document.createElement('li');
+        item.innerHTML = `${b.name} - ${b.date} - ${b.guests} guests
+          <button onclick="toggleArrived(${i})">
+            ${b.arrived ? '✅ Signed In' : 'Sign In'}
+          </button>`;
+        list.appendChild(item);
+      });
+    }
+
+    function toggleArrived(index) {
+      bookings[index].arrived = !bookings[index].arrived;
+      updateList();
+    }
+  </script>
+</body>
+</html>
